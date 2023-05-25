@@ -1,0 +1,14 @@
+{
+    "name": "desafio-extra",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "install": "cd BackEnd && npm i && cd ../FrontEnd && npm i",
+      "back-dev": "cd BackEnd && npm start",
+      "front-dev": "cd FrontEnd && npm run dev"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+  }
