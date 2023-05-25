@@ -1,24 +1,19 @@
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-/* const cookieParser = require("cookie-parser"); */
 const cors = require("cors");
-require("dotenv").config();
-/* const inmueblesRoutes = require("./routes/inmueblesRoutes"); */
+const routes = require("./routes/routes");
 
-//creamos el servidor con express
+require("dotenv").config();
+
 const app = express();
 
-//middleware    man in the middle
 app.use(morgan("dev"));
 app.use(bodyParser.json());
-/* app.use(cookieParser()); */
 app.use(cors());
 
-// colocar rutas
-/* app.use("/api", inmueblesRoutes); */
+app.use("/api", routes);
 
-// levantar el servidor en un puerto
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log("Servidor levantado en el puerto 3001");
