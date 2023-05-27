@@ -1,0 +1,20 @@
+.NavContainer {
+    height: 10rem;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+
+}
+.NavButton {
+border: none;
+border-radius: 10px;
+height: 1rem;
+width: 3rem;
+cursor: pointer;
+}

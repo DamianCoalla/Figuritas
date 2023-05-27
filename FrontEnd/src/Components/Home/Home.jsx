@@ -7,7 +7,9 @@ function Home() {
   const goLogin = () => {
     navigate("/login");
   };
-
+  const goRegister = () => {
+    navigate("/register");
+  };
   return (
     <div className="containerFig">
       <div className="imgBackground" />
@@ -17,7 +19,9 @@ function Home() {
           <button className="loginBtn" onClick={goLogin}>
             LogIn
           </button>
-          <button className="signupBtn">SignUp</button>
+          <button className="signupBtn" onClick={goRegister}>
+            SignUp
+          </button>
         </div>
       </div>
     </div>
