@@ -29,6 +29,79 @@ function All() {
       alert("An unexpected error has occurred. Please try again.");
     }
   };
+  const updateFigurine = async (id) => {
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+    };
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/figurines/${id}`,
+        requestOptions
+      );
+
+      if (response.ok) {
+        allFigurines();
+      } else {
+        const respuesta = await response.json();
+        console.log(respuesta.error);
+      }
+    } catch (error) {
+      alert("An unexpected error has occurred. Please try again.");
+    }
+  };
+  const needFigurines = async (event) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    try {
+      const response = await fetch(
+        "http://localhost:3001/api/need",
+        requestOptions
+      );
+      if (response.ok) {
+        const respuesta = await response.json();
+        setFigurines(respuesta.figurines);
+      } else {
+        const respuesta = await response.json();
+        console.log(respuesta.error);
+      }
+    } catch (error) {
+      alert("An unexpected error has occurred. Please try again.");
+    }
+  };
+  const repeatedFigurines = async (event) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    try {
+      const response = await fetch(
+        "http://localhost:3001/api/repeated",
+        requestOptions
+      );
+      if (response.ok) {
+        const respuesta = await response.json();
+        setFigurines(respuesta.figurines);
+      } else {
+        const respuesta = await response.json();
+        console.log(respuesta.error);
+      }
+    } catch (error) {
+      alert("An unexpected error has occurred. Please try again.");
+    }
+  };
 
   return (
     <div>
@@ -38,8 +111,12 @@ function All() {
           <button className="NavButton" onClick={allFigurines}>
             All
           </button>
-          <button className="NavButton">Need</button>
-          <button className="NavButton">Repeated</button>
+          <button className="NavButton" onClick={needFigurines}>
+            Need
+          </button>
+          <button className="NavButton" onClick={repeatedFigurines}>
+            Repeated
+          </button>
         </div>
       </header>
       {figurines &&
@@ -48,7 +125,7 @@ function All() {
             ? {}
             : { backgroundColor: "gray" };
           return (
-            <section className="conteiner">
+            <section className="conteiner" key={figurines.id}>
               <div className="eachFigurines" style={figuritaStyle}>
                 <div className="topFigururin">
                   <p> {figurines.id}</p>
@@ -62,12 +139,15 @@ function All() {
                 <img className="figurinesImage" src={figurines.imagen} alt="" />
                 <div className="bottonFigurin">
                   <p> {figurines.nombre}</p>
-                  {/*  {figurines.tengo}
-                  <p> {figurines.cantidad}</p> */}
                   {figurines.tengo ? (
                     <span className="cantidad">{figurines.cantidad}</span>
                   ) : (
-                    <button className="addButton">Add</button>
+                    <button
+                      className="addButton"
+                      onClick={() => updateFigurine(figurines.id)}
+                    >
+                      Add
+                    </button>
                   )}
                 </div>
               </div>
