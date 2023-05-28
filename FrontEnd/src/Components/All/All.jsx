@@ -44,14 +44,33 @@ function All() {
       </header>
       {figurines &&
         figurines.map((figurines) => {
+          const figuritaStyle = figurines.tengo
+            ? {}
+            : { backgroundColor: "gray" };
           return (
-            <section>
-              {figurines.id}
-              {figurines.nombre}
-              <img src={figurines.imagen} alt="" />
-              {figurines.album_nombre}
-              <img src={figurines.album_imagen} alt="" />
-              {figurines.tengo}
+            <section className="conteiner">
+              <div className="eachFigurines" style={figuritaStyle}>
+                <div className="topFigururin">
+                  <p> {figurines.id}</p>
+                  <p> {figurines.album_nombre}</p>
+                  <img
+                    className="albumImage"
+                    src={figurines.album_imagen}
+                    alt=""
+                  />
+                </div>
+                <img className="figurinesImage" src={figurines.imagen} alt="" />
+                <div className="bottonFigurin">
+                  <p> {figurines.nombre}</p>
+                  {/*  {figurines.tengo}
+                  <p> {figurines.cantidad}</p> */}
+                  {figurines.tengo ? (
+                    <span className="cantidad">{figurines.cantidad}</span>
+                  ) : (
+                    <button className="addButton">Add</button>
+                  )}
+                </div>
+              </div>
             </section>
           );
         })}

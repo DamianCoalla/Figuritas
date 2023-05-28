@@ -60,13 +60,21 @@ exports.allFigurines = async (req, res) => {
         "figuritas.album.nombre as album_nombre",
         "figuritas.album.imagen as album_imagen"
       )
-
       .innerJoin(
         "figuritas.album",
         "figuritas.figuritas.categoria",
         "figuritas.album.id"
       );
-
+    const figurines = resultado.map((figurita) => {
+      const color = figurita.tengo ? "color-normal" : "color-gris";
+      const addButton = figurita.tengo
+        ? ""
+        : `<button class="add-button" data-id="${figurita.id}">Add</button>`;
+      const cantidad = figurita.tengo
+        ? `<span class="cantidad"> ${figurita.cantidad}</span>`
+        : "";
+      return { ...figurita, color, addButton, cantidad };
+    });
     res.status(200).json({ figurines: resultado });
   } catch (error) {
     res.status(400).json({ error: error.message });
