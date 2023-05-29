@@ -6,6 +6,8 @@ const {
   updateFigurita,
   needFigurines,
   repeatedFigurines,
+  incrementF,
+  decrementF,
 } = require("../controllers/figuControllers");
 const routes = express.Router();
 
@@ -15,5 +17,7 @@ routes.get("/all", allFigurines);
 routes.put("/figurines/:id", updateFigurita);
 routes.get("/need", needFigurines);
 routes.get("/repeated", repeatedFigurines);
+routes.put("/increment/:id", incrementF);
+routes.put("/decrement/:id", decrementF);
 
 module.exports = routes;

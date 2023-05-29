@@ -102,6 +102,57 @@ function All() {
       alert("An unexpected error has occurred. Please try again.");
     }
   };
+  const decrementF = async (id) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/decrement/${id}`,
+        requestOptions
+      );
+      if (response.ok) {
+        allFigurines();
+      } else {
+        const respuesta = await response.json();
+        console.log(respuesta.error);
+      }
+    } catch (error) {
+      alert("An unexpected error has occurred. Please try again.");
+    }
+  };
+
+  const incrementF = async (id) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/increment/${id}`,
+        requestOptions
+      );
+      if (response.ok) {
+        allFigurines();
+      } else {
+        const respuesta = await response.json();
+        console.log(respuesta.error);
+      }
+    } catch (error) {
+      alert("An unexpected error has occurred. Please try again.");
+    }
+  };
 
   return (
     <div>
@@ -140,7 +191,15 @@ function All() {
                 <div className="bottonFigurin">
                   <p> {figurines.nombre}</p>
                   {figurines.tengo ? (
-                    <span className="cantidad">{figurines.cantidad}</span>
+                    <div>
+                      <button onClick={() => decrementF(figurines.id)}>
+                        -
+                      </button>
+                      <span className="cantidad">{figurines.cantidad}</span>
+                      <button onClick={() => incrementF(figurines.id)}>
+                        +
+                      </button>
+                    </div>
                   ) : (
                     <button
                       className="addButton"

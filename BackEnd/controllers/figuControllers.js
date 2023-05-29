@@ -148,3 +148,41 @@ exports.repeatedFigurines = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+exports.incrementF = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const figurines = await knex("figuritas.figuritas")
+      .select("cantidad")
+      .where({ id })
+      .first();
+    if (!figurines) {
+      return res.status(404).json({ error: "figurine not found" });
+    }
+    const newCantidad = figurines.cantidad + 1;
+    await knex("figuritas.figuritas")
+      .where({ id })
+      .update({ cantidad: newCantidad });
+    res.status(200).json({ message: "Figurine update successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+exports.decrementF = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const figurines = await knex("figuritas.figuritas")
+      .select("cantidad")
+      .where({ id })
+      .first();
+    if (!figurines) {
+      return res.status(404).json({ error: "figurine not found" });
+    }
+    const newCantidad = figurines.cantidad - 1;
+    await knex("figuritas.figuritas")
+      .where({ id })
+      .update({ cantidad: newCantidad });
+    res.status(200).json({ message: "Figurine update successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
