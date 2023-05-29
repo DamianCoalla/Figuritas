@@ -3,11 +3,14 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    height: 100vh;
-    width: 100vw;
-    margin-top: 10rem;
+       margin-top: 10rem;
 
 }
+.titulo {
+    color: white;
+    font-size: 2.5rem;
+}
+
 .loginForm {
     display: flex;
     flex-direction: column;
@@ -16,13 +19,15 @@
     gap: 2rem;
 }
 .buttonLogin {
-    width: 9rem;
-    height: 2rem;
+    width: 13rem;
+    height: 2.5rem;
     border-radius: 10px;
     cursor: pointer;
+    font-weight: 800;
 }
-.input {
-    width: 10rem;
-    height: 2rem;
-    border-radius: 5px;
+.inputLogin {
+    width: 13rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    padding-left: 5px;
 }

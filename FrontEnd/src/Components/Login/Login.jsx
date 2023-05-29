@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
-
   const [user_name, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,9 +33,13 @@ function Login() {
         const respuesta = await response.json();
         localStorage.setItem("token", respuesta.token);
         navigate("/all");
+      } else if (response.status === 404) {
+        alert("The user is not registered");
+      } else if (response.status === 400) {
+        alert("Invalid username and/or password");
       } else {
         const respuesta = await response.json();
-        alert(respuesta.error);
+        console.log(respuesta.error);
       }
     } catch (error) {
       alert("An unexpected error has occurred. Please try again.");
@@ -45,10 +48,10 @@ function Login() {
 
   return (
     <div className="formContainer">
-      <h1>Login</h1>
+      <h1 className="titulo">Login</h1>
       <form className="loginForm" action="submit" onSubmit={logeado}>
         <input
-          className="input"
+          className="inputLogin"
           type="text"
           placeholder="User name"
           onChange={(e) => {
@@ -57,7 +60,7 @@ function Login() {
           value={user_name}
         />
         <input
-          className="input"
+          className="inputLogin"
           type="password"
           placeholder="Password"
           onChange={(event) => {

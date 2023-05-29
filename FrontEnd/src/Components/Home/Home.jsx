@@ -11,18 +11,17 @@ function Home() {
     navigate("/register");
   };
   return (
-    <div className="containerFig">
-      <div className="imgBackground" />
+    <div>
       <div className="contentWrapper">
         <h2 className="title">NBA Figurines Trade</h2>
-        <div className="buttonGroup">
-          <button className="loginBtn" onClick={goLogin}>
-            LogIn
-          </button>
-          <button className="signupBtn" onClick={goRegister}>
-            SignUp
-          </button>
-        </div>
+      </div>
+      <div className="buttonGroup">
+        <button className="loginBtn" onClick={goLogin}>
+          LogIn
+        </button>
+        <button className="signupBtn" onClick={goRegister}>
+          SignUp
+        </button>
       </div>
     </div>
   );

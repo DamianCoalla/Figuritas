@@ -31,11 +31,14 @@ function Register() {
         "http://localhost:3001/api/register",
         requestOptions
       );
-      if (response.ok) {
+
+      if (response.status === 404) {
+        alert("The user name is already in use.");
+      } else if (response.ok) {
         const respuesta = await response.json();
       } else {
-        const respuesta = await response.json;
-        alert(respuesta.error);
+        const respuesta = await response.json();
+        console.log(respuesta.error);
       }
     } catch (error) {
       alert("An unexpected error has occurred. Please try again.");
@@ -44,7 +47,7 @@ function Register() {
 
   return (
     <div className="registerContainer">
-      <h1>Sign Up</h1>
+      <h1 className="titulo">Sign Up</h1>
       <form className="registerForm" action="submit" onSubmit={registro}>
         <input
           className="input"
@@ -64,6 +67,7 @@ function Register() {
           }}
           value={user_name}
         />
+
         <input
           className="input"
           type="password"

@@ -157,7 +157,7 @@ function All() {
   return (
     <div>
       <header className="NavContainer">
-        <h2>NBA Figurines Trade</h2>
+        <h2 className="tituloFiguritas">NBA Figurines Trade</h2>
         <div className="buttonContainer">
           <button className="NavButton" onClick={allFigurines}>
             All
@@ -213,7 +213,6 @@ function All() {
             </section>
           );
         })}
-
       <section>
         <Footer />
       </section>

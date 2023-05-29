@@ -38,12 +38,20 @@ exports.userRegister = async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const passwordEncript = await bcrypt.hash(password, salt);
   try {
-    const resultado = await knex("figuritas.usuario").insert({
-      nombre: nombre,
-      user_name: user_name,
-      password: passwordEncript,
-    });
-    res.status(200).json({ message: "The user has successfully registered" });
+    const consulta = await knex
+      .select("user_name")
+      .from("figuritas.usuario")
+      .where({ user_name: user_name });
+    if (consulta.length > 0) {
+      return res.status(404).json({ error: "The user name is already in use" });
+    } else {
+      const resultado = await knex("figuritas.usuario").insert({
+        nombre: nombre,
+        user_name: user_name,
+        password: passwordEncript,
+      });
+      res.status(200).json({ message: "The user has successfully registered" });
+    }
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
