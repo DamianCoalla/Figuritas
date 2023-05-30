@@ -202,3 +202,27 @@ exports.getAlbums = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+exports.figurinesByAlbum = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const figurines = await knex("figuritas.figuritas")
+      .select(
+        "figuritas.figuritas.id",
+        "figuritas.figuritas.nombre",
+        "figuritas.figuritas.tengo",
+        "figuritas.figuritas.cantidad",
+        "figuritas.figuritas.imagen",
+        "figuritas.album.nombre as album_nombre",
+        "figuritas.album.imagen as album_imagen"
+      )
+      .innerJoin(
+        "figuritas.album",
+        "figuritas.figuritas.categoria",
+        "figuritas.album.id"
+      )
+      .where("figuritas.categoria", id);
+    res.status(200).json({ figurines });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};

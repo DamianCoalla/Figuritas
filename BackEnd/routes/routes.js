@@ -9,6 +9,7 @@ const {
   incrementF,
   decrementF,
   getAlbums,
+  figurinesByAlbum,
 } = require("../controllers/figuControllers");
 const routes = express.Router();
 
@@ -21,5 +22,6 @@ routes.get("/repeated", repeatedFigurines);
 routes.put("/increment/:id", incrementF);
 routes.put("/decrement/:id", decrementF);
 routes.get("/albums", getAlbums);
+routes.get("/albums/:id", figurinesByAlbum);
 
 module.exports = routes;
