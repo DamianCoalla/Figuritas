@@ -194,3 +194,11 @@ exports.decrementF = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+exports.getAlbums = async (req, res) => {
+  try {
+    const albums = await knex.select("*").from("figuritas.album");
+    res.status(200).json({ albums });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};

@@ -8,6 +8,7 @@ const {
   repeatedFigurines,
   incrementF,
   decrementF,
+  getAlbums,
 } = require("../controllers/figuControllers");
 const routes = express.Router();
 
@@ -19,5 +20,6 @@ routes.get("/need", needFigurines);
 routes.get("/repeated", repeatedFigurines);
 routes.put("/increment/:id", incrementF);
 routes.put("/decrement/:id", decrementF);
+routes.get("/albums", getAlbums);
 
 module.exports = routes;

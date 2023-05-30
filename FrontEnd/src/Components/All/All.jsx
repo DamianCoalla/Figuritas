@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import Footer from "../Footer/Footer";
 import "./All.css";
+import { useNavigate } from "react-router-dom";
 
 function All() {
+  const navigate = useNavigate();
+
   const [figurines, setFigurines] = useState("");
+
+  const goAlbum = () => {
+    navigate("/album");
+  };
+
   const allFigurines = async (event) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -168,7 +176,9 @@ function All() {
           <button className="NavButton" onClick={repeatedFigurines}>
             Repeated
           </button>
-          <button className="NavButton">Album</button>
+          <button className="NavButton" onClick={goAlbum}>
+            Album
+          </button>
         </div>
       </header>
       <div className="figurinesContainer">
