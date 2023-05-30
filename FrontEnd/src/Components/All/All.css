@@ -1,3 +1,8 @@
+.totalContainer{
+    height: 100vh;
+
+}
+
 .NavContainer {
     height: 10rem;
     width: 100vw;
@@ -35,27 +40,33 @@ cursor: pointer;
     justify-content: center;
     border: 2px solid black;
     border-radius: 10px;
-    width: 14rem;
-    height: 15rem;
+    width: 15rem;
+    height: 18rem;
+    margin: 6px;
 }
 .conteiner {
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-gap: 2rem;
+
 }
+
 .topFigururin {
+    width: 14rem;
 display: flex;
 flex-direction: row;
-justify-content: space-evenly;
+justify-content: space-around;
 align-items: center;
 padding: 2px;
+font-weight: 800;
+font-size: medium;
 
 }
 .albumImage {
-width: 2rem;
-height: 2rem;
+width: 3rem;
+height: 3rem;
+border-radius: 50px;
 }
 .figurinesImage {
     width: 10rem;
@@ -65,4 +76,40 @@ height: 2rem;
 .bottonFigurin {
     display: flex;
 flex-direction: column;
+align-items: center;
+}
+.footerSection {
+    bottom: 2em;
+    position: absolute;
+}
+.figurinesContainer {
+    height: 37rem;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+.playerName {
+    font-weight: 800;
+font-size: medium;
+margin-top: 5px;
+}
+.buttonCount {
+width: 2em;
+margin: 0px 5px;
+background-color: rgb(57, 53, 53);
+border: none;
+color: white;
+}
+.addButton {
+    width: 6rem;
+    border-radius: 8px;
+    border: none;
+    margin-top: 5px;
+}
+.cantidad {
+    font-size: 22px;
+    font-weight: 500;
+}
+.threeButton {
+    display: flex;
+    align-items: center;
 }

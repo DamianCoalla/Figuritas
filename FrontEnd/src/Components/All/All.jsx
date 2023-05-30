@@ -155,7 +155,7 @@ function All() {
   };
 
   return (
-    <div>
+    <div className="totalContainer">
       <header className="NavContainer">
         <h2 className="tituloFiguritas">NBA Figurines Trade</h2>
         <div className="buttonContainer">
@@ -168,52 +168,65 @@ function All() {
           <button className="NavButton" onClick={repeatedFigurines}>
             Repeated
           </button>
+          <button className="NavButton">Album</button>
         </div>
       </header>
-      {figurines &&
-        figurines.map((figurines) => {
-          const figuritaStyle = figurines.tengo
-            ? {}
-            : { backgroundColor: "gray" };
-          return (
-            <section className="conteiner" key={figurines.id}>
-              <div className="eachFigurines" style={figuritaStyle}>
-                <div className="topFigururin">
-                  <p> {figurines.id}</p>
-                  <p> {figurines.album_nombre}</p>
+      <div className="figurinesContainer">
+        {figurines &&
+          figurines.map((figurines) => {
+            const figuritaStyle = figurines.tengo
+              ? { backgroundColor: "white" }
+              : { backgroundColor: "gray" };
+            return (
+              <section className="conteiner" key={figurines.id}>
+                <div className="eachFigurines" style={figuritaStyle}>
+                  <div className="topFigururin">
+                    <p> {figurines.id}</p>
+                    <p> {figurines.album_nombre}</p>
+                    <img
+                      className="albumImage"
+                      src={figurines.album_imagen}
+                      alt=""
+                    />
+                  </div>
                   <img
-                    className="albumImage"
-                    src={figurines.album_imagen}
+                    className="figurinesImage"
+                    src={figurines.imagen}
                     alt=""
                   />
-                </div>
-                <img className="figurinesImage" src={figurines.imagen} alt="" />
-                <div className="bottonFigurin">
-                  <p> {figurines.nombre}</p>
-                  {figurines.tengo ? (
-                    <div>
-                      <button onClick={() => decrementF(figurines.id)}>
-                        -
+                  <div className="bottonFigurin">
+                    <p className="playerName"> {figurines.nombre}</p>
+                    {figurines.tengo ? (
+                      <div className="threeButton">
+                        <button
+                          className="buttonCount"
+                          onClick={() => decrementF(figurines.id)}
+                        >
+                          -
+                        </button>
+                        <span className="cantidad">{figurines.cantidad}</span>
+                        <button
+                          className="buttonCount"
+                          onClick={() => incrementF(figurines.id)}
+                        >
+                          +
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        className="addButton"
+                        onClick={() => updateFigurine(figurines.id)}
+                      >
+                        Add
                       </button>
-                      <span className="cantidad">{figurines.cantidad}</span>
-                      <button onClick={() => incrementF(figurines.id)}>
-                        +
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      className="addButton"
-                      onClick={() => updateFigurine(figurines.id)}
-                    >
-                      Add
-                    </button>
-                  )}
+                    )}
+                  </div>
                 </div>
-              </div>
-            </section>
-          );
-        })}
-      <section>
+              </section>
+            );
+          })}
+      </div>
+      <section className="footerSection">
         <Footer />
       </section>
     </div>
