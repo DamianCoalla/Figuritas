@@ -10,6 +10,7 @@ function All() {
 
   const goAlbum = () => {
     navigate("/album");
+    setFigurines([]);
   };
 
   const allFigurines = async (event) => {
