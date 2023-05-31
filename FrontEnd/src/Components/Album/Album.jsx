@@ -5,6 +5,7 @@ function Album() {
   const [albums, setAlbums] = useState([]);
   const [figurines, setFigurines] = useState([]);
   const [selectedAlbumId, setSelectedAlbumId] = useState(null);
+  const [showFigurines, setShowFigurines] = useState(false);
 
   useEffect(() => {
     const showsAlbums = async () => {
@@ -163,22 +164,35 @@ function Album() {
   const albumClick = (albumId) => {
     setSelectedAlbumId(albumId);
     figurinesByAlbums(albumId);
+    setShowFigurines(true);
+  };
+  const closeFigurines = () => {
+    setFigurines([]);
+    setShowFigurines(false);
   };
 
   return (
-    <div className="albumContainer">
-      {albums &&
-        albums.map((album) => (
-          <button
-            className="albumButton"
-            key={album.id}
-            onClick={() => albumClick(album.id)}
-          >
-            <img className="imageAlbum" src={album.imagen} alt="" />
+    <div>
+      <h1 className="teamsTitle">Teams</h1>
+      {!showFigurines ? (
+        <div className="albumContainer">
+          {albums &&
+            albums.map((album) => (
+              <div className="buttonAlbumContainer" key={album.id}>
+                <button
+                  className="albumButton"
+                  onClick={() => albumClick(album.id)}
+                >
+                  <img className="albumButton" src={album.imagen} alt="" />
+                </button>
+              </div>
+            ))}
+        </div>
+      ) : (
+        <div className="figurinesContainerAlbum">
+          <button className="closeButton" onClick={closeFigurines}>
+            X
           </button>
-        ))}
-      {selectedAlbumId && (
-        <div className="figurinesContainer">
           {figurines.map((figurines) => {
             const figurinStyle = figurines.tengo
               ? { backgroundColor: "white" }
