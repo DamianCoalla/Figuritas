@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./Register.css";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [nombre, setNombre] = useState("");
   const [user_name, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate("");
 
   const registro = async (event) => {
     event.preventDefault();
@@ -36,6 +38,8 @@ function Register() {
         alert("The user name is already in use.");
       } else if (response.ok) {
         const respuesta = await response.json();
+        alert("The user has successfully registered");
+        navigate("/all");
       } else {
         const respuesta = await response.json();
         console.log(respuesta.error);
